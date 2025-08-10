@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mattermost-mcp"
+version = "0.1.0"
+description = "Mattermost Model Context Protocol (MCP) server for AI agents"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Ben Vierck", email = "ben@lit.ai"},
+    {name = "Claude (Anthropic)", email = "claude@anthropic.com"}
+]
+keywords = ["mattermost", "mcp", "ai", "automation", "chat", "collaboration", "teams"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Chat",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "requests>=2.25.0",
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "python-dateutil>=2.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/xcud/mattermost-mcp"
+Repository = "https://github.com/xcud/mattermost-mcp"
+Issues = "https://github.com/xcud/mattermost-mcp/issues"
+Documentation = "https://github.com/xcud/mattermost-mcp#readme"
+
+[project.scripts]
+mattermost-mcp = "mattermost_mcp.server:main"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.github",
+    "/tests",
+    "/.gitignore",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
